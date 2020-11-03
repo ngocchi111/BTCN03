@@ -1,0 +1,95 @@
+<div class= "container" style="float:right">
+	<form>
+	   <div class="row">
+		<div class="col-xs-1"><input type="radio" name="calculation" id="calculationa" value="+"/>Cộng</div>
+		<div class="col-xs-1"><input type="radio" name="calculation" id="calculations" value="-"/>Trừ</div>
+	   </div>
+	   <div class="row">
+		<div class="col-xs-1"><input type="radio" name="calculation" id="calculationm" value="*"/>Nhân</div>
+		<div class="col-xs-1"><input type="radio" name="calculation" id="calculationd" value="/"/>Chia</div>
+	   </div>
+	</form>
+	   <div class="row">
+		 <input type="button" value="Tính" onclick="Calculate()">
+	   </div>
+  </div>
+  <form>
+	<div class="row">
+		<div class="col-xs-1"><a>Số thứ nhất </a></div>
+		<div class="col-xs-1"><input type="text" id="namex" size="15" onblur="onblurx()"></div>
+	</div>
+	<div class="row">
+		<div class="col-xs-1"><a>Số thứ hai </a></div>
+		<div class="col-xs-1"><input type="text" id="namey" size="15" onblur="onblury()"></div>
+	</div>
+  </div>
+  </form>
+
+
+  <script>
+  function onblurx() {
+    var x = document.getElementById("namex").value;
+    if (x == "")
+        alert ("Số thứ nhất chưa nhập");
+    for (let i = 0; i < x.length; i++)
+        if ((x.charCodeAt(i) < 48 || x.charCodeAt(i) > 57) && x.charCodeAt(i) != 46) {
+            alert ("Số thứ nhất không hợp lệ");
+            return;
+        }
+}
+
+function onblury() {  
+    var y = document.getElementById("namey").value;
+    if (y == "")
+        alert ("Số thứ hai chưa nhập");
+    for (let i = 0; i < y.length; i++)
+        if ((y.charCodeAt(i) < 48 || y.charCodeAt(i) > 57) && y.charCodeAt(i) != 46) {
+            alert ("Số thứ hai không hợp lệ");
+            return;
+        }
+}
+
+function Calculate() {
+    document.getElementById("KQ").value = "";
+    var x = document.getElementById("namex").value;
+    var y = document.getElementById("namey").value;
+    if (x == "") {
+        alert ("Số thứ nhất chưa nhập");
+        return;
+    }
+    for (let i = 0; i < x.length; i++)
+        if ((x.charCodeAt(i) < 48 || x.charCodeAt(i) > 57) && x.charCodeAt(i) != 46) {
+            alert ("Số thứ nhất không hợp lệ");
+            return;
+        }
+    if (y == "") {
+        alert("Số thứ hai chưa nhập");
+        return;
+    }
+    for (let i = 0; i < y.length; i++)
+        if ((y.charCodeAt(i) < 48 || y.charCodeAt(i) > 57) && y.charCodeAt(i) != 46) {
+            alert ("Số thứ hai không hợp lệ");
+            return;
+        }
+    x = parseFloat(x);
+    y = parseFloat(y);
+    if (document.getElementById("calculationa").checked)
+        document.getElementById("KQ").value = x + y;
+    else
+    if (document.getElementById("calculations").checked)
+        document.getElementById("KQ").value = x - y;
+    else
+    if (document.getElementById("calculationm").checked)
+        document.getElementById("KQ").value = x * y;
+    else
+    if (document.getElementById("calculationd").checked) {
+        if (y == 0) {
+            alert("Phép tính không hợp lệ");
+            return;
+        }
+        document.getElementById("KQ").value = x / y;
+    } else {
+        alert("Chưa chọn phép tính");
+    }
+}
+</script>
